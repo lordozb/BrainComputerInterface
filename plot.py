@@ -1,9 +1,18 @@
 import numpy as np
 from numpy import genfromtxt as gft 
 import matplotlib.pyplot as plt 
+import pickle
+from sklearn.cluster import KMeans
+from sklearn.svm import SVC
+
+
+file = open("classifier.pkl","rb")
+clf = pickle.load(file)
+file.close()
 
 data = gft("./Dataset.csv", delimiter = ',')
 mydata = data[2:,1:9]
+
 
 time = []
 value1 = []
@@ -27,7 +36,20 @@ for f in range(len(data)):
 	value6.append(mydata[f,5])
 	value7.append(mydata[f,6])
 	value8.append(mydata[f,7])
+	sample = mydata[f].reshape(1,-1)
+	predicted = clf.predict(sample)
+
+	displayText = "Attentive"
+
+	if(predicted[0] == 0):
+		displayText = "Distracted"
+
+	
+
+	
+
 	if f % 2000 == 0:
+		print(chr(27)+"[2J")
 		plt.subplot(3,3,1)
 		plt.plot(time,value1, color = 'red')
 
@@ -52,8 +74,10 @@ for f in range(len(data)):
 		plt.subplot(3,3,8)
 		plt.plot(time,value8, color = 'orange')
 
+		print(displayText)
+		
 
 		plt.draw()
-		plt.pause(0.01)
+		plt.pause(0.0001)
 
 
