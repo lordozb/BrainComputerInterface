@@ -1,0 +1,59 @@
+import numpy as np
+from numpy import genfromtxt as gft 
+import matplotlib.pyplot as plt 
+
+data = gft("./Dataset.csv", delimiter = ',')
+mydata = data[2:,1:9]
+
+time = []
+value1 = []
+value2 = []
+value3 = []
+value4 = []
+value5 = []
+value6 = []
+value7 = []
+value8 = []
+
+fig = plt.figure()
+
+for f in range(len(data)):
+	time.append(f)
+	value1.append(mydata[f,0])
+	value2.append(mydata[f,1])
+	value3.append(mydata[f,2])
+	value4.append(mydata[f,3])
+	value5.append(mydata[f,4])
+	value6.append(mydata[f,5])
+	value7.append(mydata[f,6])
+	value8.append(mydata[f,7])
+	if f % 2000 == 0:
+		plt.subplot(3,3,1)
+		plt.plot(time,value1, color = 'red')
+
+		plt.subplot(3,3,2)
+		plt.plot(time,value2, color = 'green')
+
+		plt.subplot(3,3,3)
+		plt.plot(time,value3, color = 'yellow')
+
+		plt.subplot(3,3,4)
+		plt.plot(time,value4, color = 'blue')
+
+		plt.subplot(3,3,5)
+		plt.plot(time,value5, color = 'cyan')
+
+		plt.subplot(3,3,6)
+		plt.plot(time,value6, color = 'maroon')
+
+		plt.subplot(3,3,7)
+		plt.plot(time,value7, color = 'black')
+
+		plt.subplot(3,3,8)
+		plt.plot(time,value8, color = 'orange')
+
+
+		plt.draw()
+		plt.pause(0.01)
+
+
