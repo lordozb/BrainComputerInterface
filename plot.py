@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import pickle
 from sklearn.cluster import KMeans
 from sklearn.svm import SVC
+import os
 
 
 file = open("classifier.pkl","rb")
@@ -49,7 +50,7 @@ for f in range(len(data)):
 	
 
 	if f % 2000 == 0:
-		print(chr(27)+"[2J")
+		os.system("clear")
 		plt.subplot(3,3,1)
 		plt.plot(time,value1, color = 'red')
 
